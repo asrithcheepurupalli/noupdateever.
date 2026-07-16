@@ -1,0 +1,31 @@
+# Zoom Workplace — auto-update is governed by Zoom's documented policy
+# registry keys. EnableClientAutoUpdate=0 disables the client's auto-update;
+# EnableSilentAutoUpdate=0 is defense in depth for older clients.
+
+[recipe]
+id = "zoom"
+name = "Zoom Workplace"
+vendor = "Zoom"
+format = 1
+revision = 1
+signature = "unsigned"
+
+[detect]
+uninstall_names = ["Zoom"]
+paths = ["%APPDATA%\\Zoom\\bin\\Zoom.exe"]
+
+[[action]]
+kind = "set_registry_value"
+hive = "HKLM"
+key = "SOFTWARE\\Policies\\Zoom\\Zoom Meetings\\General"
+value = "EnableClientAutoUpdate"
+type = "dword"
+data = 0
+
+[[action]]
+kind = "set_registry_value"
+hive = "HKLM"
+key = "SOFTWARE\\Policies\\Zoom\\Zoom Meetings\\General"
+value = "EnableSilentAutoUpdate"
+type = "dword"
+data = 0

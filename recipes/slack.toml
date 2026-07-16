@@ -1,0 +1,20 @@
+# Slack — classic Squirrel layout: %LOCALAPPDATA%\slack\Update.exe performs
+# silent background updates. Stubbing it stops them; Slack itself launches
+# fine from slack.exe. Newer MSIX installs update via the Store instead —
+# that surface is covered by the OS policy layer, not this recipe.
+
+[recipe]
+id = "slack"
+name = "Slack"
+vendor = "Slack Technologies"
+format = 1
+revision = 1
+signature = "unsigned"
+
+[detect]
+uninstall_names = ["Slack"]
+paths = ["%LOCALAPPDATA%\\slack\\slack.exe"]
+
+[[action]]
+kind = "stub_executable"
+path = "%LOCALAPPDATA%\\slack\\Update.exe"

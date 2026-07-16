@@ -1,0 +1,29 @@
+{
+  "apps": [
+    ["Google Chrome", "126.0.6478.127"],
+    ["Microsoft Visual Studio Code", "1.91.1"],
+    ["Slack", "4.39.90"],
+    ["Discord", "1.0.9155"],
+    ["Spotify", "1.2.40.599"],
+    ["Notepad++", "8.6.9"],
+    ["7-Zip 24.07", "24.07"],
+    ["SomeVendor Widget Studio", "2.4.1"]
+  ],
+  "services": [
+    ["gupdate", "Google Update Service (gupdate)"],
+    ["gupdatem", "Google Update Service (gupdatem)"],
+    ["WidgetStudioUpdateSvc", "Widget Studio Update Service"],
+    ["Spooler", "Print Spooler"]
+  ],
+  "tasks": [
+    "\\GoogleUpdateTaskMachineCore{A1B2C3}",
+    "\\GoogleUpdateTaskMachineUA{A1B2C3}",
+    "\\WidgetStudio Update Check",
+    "\\MicrosoftEdgeUpdateTaskMachineCore"
+  ],
+  "squirrel_dirs": [
+    "C:\\Users\\dev\\AppData\\Local\\slack",
+    "C:\\Users\\dev\\AppData\\Local\\Discord",
+    "C:\\Users\\dev\\AppData\\Local\\SomeRandomApp"
+  ]
+}

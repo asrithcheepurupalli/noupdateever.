@@ -1,0 +1,27 @@
+# Mozilla Firefox — the one vendor with a first-class "don't update" policy
+# (DisableAppUpdate), honored since Firefox 60. The Maintenance Service is
+# the background-update helper; disabling it is defense in depth.
+
+[recipe]
+id = "firefox"
+name = "Mozilla Firefox"
+vendor = "Mozilla"
+format = 1
+revision = 1
+signature = "unsigned"
+
+[detect]
+uninstall_names = ["Mozilla Firefox"]
+paths = ["%ProgramFiles%\\Mozilla Firefox\\firefox.exe"]
+
+[[action]]
+kind = "set_registry_value"
+hive = "HKLM"
+key = "SOFTWARE\\Policies\\Mozilla\\Firefox"
+value = "DisableAppUpdate"
+type = "dword"
+data = 1
+
+[[action]]
+kind = "disable_service"
+service = "MozillaMaintenance"

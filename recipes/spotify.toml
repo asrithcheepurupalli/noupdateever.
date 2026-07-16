@@ -1,0 +1,20 @@
+# Spotify — downloads updates into %LOCALAPPDATA%\Spotify\Update and applies
+# them on restart. Occupying that path with a read-only file (the well-known
+# technique) prevents the updater from staging anything.
+
+[recipe]
+id = "spotify"
+name = "Spotify"
+vendor = "Spotify AB"
+format = 1
+revision = 1
+signature = "unsigned"
+notes = "Microsoft Store installs update via the Store, not this path."
+
+[detect]
+uninstall_names = ["Spotify"]
+paths = ["%APPDATA%\\Spotify\\Spotify.exe"]
+
+[[action]]
+kind = "block_path"
+path = "%LOCALAPPDATA%\\Spotify\\Update"

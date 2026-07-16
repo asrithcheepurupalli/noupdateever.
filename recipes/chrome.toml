@@ -1,0 +1,47 @@
+# Google Chrome — updates via the Google Update machinery: two services
+# (gupdate, gupdatem), machine scheduled tasks, plus a vendor-documented
+# policy key. We use all of them: policy is the sanctioned lever, the rest
+# is defense in depth because Google Update also serves other Google apps.
+
+[recipe]
+id = "chrome"
+name = "Google Chrome"
+vendor = "Google"
+format = 1
+revision = 1
+signature = "unsigned"
+notes = "Freezing a browser holds back security fixes too; Stasis says this once in the manual, not in your face."
+
+[detect]
+uninstall_names = ["Google Chrome"]
+paths = ["%ProgramFiles%\\Google\\Chrome\\Application\\chrome.exe"]
+
+[[action]]
+kind = "set_registry_value"
+hive = "HKLM"
+key = "SOFTWARE\\Policies\\Google\\Update"
+value = "UpdateDefault"
+type = "dword"
+data = 0
+
+[[action]]
+kind = "disable_service"
+service = "gupdate"
+
+[[action]]
+kind = "disable_service"
+service = "gupdatem"
+
+[[action]]
+kind = "disable_scheduled_task"
+task = "GoogleUpdateTaskMachineCore"
+match = "prefix"
+
+[[action]]
+kind = "disable_scheduled_task"
+task = "GoogleUpdateTaskMachineUA"
+match = "prefix"
+
+[[action]]
+kind = "firewall_block_program"
+program = "%ProgramFiles(x86)%\\Google\\Update\\GoogleUpdate.exe"

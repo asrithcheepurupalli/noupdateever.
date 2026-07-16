@@ -1,0 +1,19 @@
+# GitHub Desktop — Squirrel layout in %LOCALAPPDATA%\GitHubDesktop. Unlike
+# Discord, the app launches from its versioned app-*/GitHubDesktop.exe and
+# Update.exe is only the updater, so stubbing it is safe.
+
+[recipe]
+id = "github-desktop"
+name = "GitHub Desktop"
+vendor = "GitHub"
+format = 1
+revision = 1
+signature = "unsigned"
+
+[detect]
+uninstall_names = ["GitHub Desktop"]
+paths = ["%LOCALAPPDATA%\\GitHubDesktop\\GitHubDesktop.exe"]
+
+[[action]]
+kind = "stub_executable"
+path = "%LOCALAPPDATA%\\GitHubDesktop\\Update.exe"

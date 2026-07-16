@@ -1,0 +1,23 @@
+# Discord — Squirrel-based, but the shortcut launches THROUGH Update.exe
+# (Update.exe --processStart Discord.exe), so stubbing it would break launch.
+# The supported lever is Discord's own settings.json flag SKIP_HOST_UPDATE,
+# which makes the host skip its self-update at startup.
+
+[recipe]
+id = "discord"
+name = "Discord"
+vendor = "Discord Inc."
+format = 1
+revision = 1
+signature = "unsigned"
+notes = "Do NOT stub %LOCALAPPDATA%\\Discord\\Update.exe — Discord launches through it."
+
+[detect]
+uninstall_names = ["Discord"]
+paths = ["%LOCALAPPDATA%\\Discord\\Update.exe"]
+
+[[action]]
+kind = "set_json_value"
+file = "%APPDATA%\\discord\\settings.json"
+pointer = "/SKIP_HOST_UPDATE"
+value = true

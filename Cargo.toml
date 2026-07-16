@@ -1,0 +1,21 @@
+[package]
+name = "stasis"
+version = "0.1.0"
+edition = "2021"
+description = "The update firewall. Sealed software; change only through the gate."
+license = "LicenseRef-Stasis-Proprietary"
+
+# Covenant: the dependency tree stays tiny and boring. Every crate added here
+# is churn we inherit forever. Serde + toml + serde_json only; CLI is hand-rolled.
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.52"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

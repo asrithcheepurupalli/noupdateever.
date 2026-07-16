@@ -1,0 +1,24 @@
+# Visual Studio Code — in-app updater, controlled by the documented Windows
+# registry policy UpdateMode (supported since VS Code 1.67). "none" disables
+# both checks and downloads. Extensions auto-update is a separate mechanism;
+# a later recipe revision covers it via user settings.
+
+[recipe]
+id = "vscode"
+name = "Visual Studio Code"
+vendor = "Microsoft"
+format = 1
+revision = 1
+signature = "unsigned"
+
+[detect]
+uninstall_names = ["Microsoft Visual Studio Code"]
+paths = ["%LOCALAPPDATA%\\Programs\\Microsoft VS Code\\Code.exe"]
+
+[[action]]
+kind = "set_registry_value"
+hive = "HKLM"
+key = "SOFTWARE\\Policies\\Microsoft\\VSCode"
+value = "UpdateMode"
+type = "string"
+data = "none"

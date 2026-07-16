@@ -1,0 +1,40 @@
+# Microsoft Edge — same architecture as Chrome: edgeupdate/edgeupdatem
+# services, machine tasks, and a documented EdgeUpdate policy key.
+
+[recipe]
+id = "edge"
+name = "Microsoft Edge"
+vendor = "Microsoft"
+format = 1
+revision = 1
+signature = "unsigned"
+
+[detect]
+uninstall_names = ["Microsoft Edge"]
+paths = ["%ProgramFiles(x86)%\\Microsoft\\Edge\\Application\\msedge.exe"]
+
+[[action]]
+kind = "set_registry_value"
+hive = "HKLM"
+key = "SOFTWARE\\Policies\\Microsoft\\EdgeUpdate"
+value = "UpdateDefault"
+type = "dword"
+data = 0
+
+[[action]]
+kind = "disable_service"
+service = "edgeupdate"
+
+[[action]]
+kind = "disable_service"
+service = "edgeupdatem"
+
+[[action]]
+kind = "disable_scheduled_task"
+task = "MicrosoftEdgeUpdateTaskMachineCore"
+match = "prefix"
+
+[[action]]
+kind = "disable_scheduled_task"
+task = "MicrosoftEdgeUpdateTaskMachineUA"
+match = "prefix"

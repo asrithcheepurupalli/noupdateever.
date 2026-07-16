@@ -1,0 +1,19 @@
+# Notepad++ — ships WinGUp (GUP.exe) in the updater subfolder and runs it
+# on launch. Stubbing GUP.exe stops update checks; Notepad++ itself is
+# unaffected (it treats a failed updater launch as "no update available").
+
+[recipe]
+id = "notepad-plus-plus"
+name = "Notepad++"
+vendor = "Don Ho"
+format = 1
+revision = 1
+signature = "unsigned"
+
+[detect]
+uninstall_names = ["Notepad++"]
+paths = ["%ProgramFiles%\\Notepad++\\notepad++.exe"]
+
+[[action]]
+kind = "stub_executable"
+path = "%ProgramFiles%\\Notepad++\\updater\\GUP.exe"
